@@ -1,11 +1,19 @@
-package com.javaminor.accessingDataJPA.Models;
+package com.javaminor.accessingDataJPA.Models.DbModels;
 
-import javax.persistence.Column;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
 import java.sql.Date;
 
 @MappedSuperclass
 public abstract class CredentialsCommon {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "userId-generator")
+    @TableGenerator(name = "userId-generator", table = "userIds")
+    private Long id;
+
+    @Version
+    private Long version;
+
     @Column(name = "USERNAME")
     private String username;
 
@@ -15,15 +23,15 @@ public abstract class CredentialsCommon {
     @Column(name = "CREATED")
     private Date creationDate;
 
-    protected CredentialsCommon() {}
+    //getters and setters
 
-    public CredentialsCommon(String username, String password, Date created){
-        this.username = username;
-        this.password = password;
-        this.creationDate = created;
+    public Long getId() {
+        return id;
     }
 
-    //getters and setters
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public Date getCreationDate() {
         return creationDate;

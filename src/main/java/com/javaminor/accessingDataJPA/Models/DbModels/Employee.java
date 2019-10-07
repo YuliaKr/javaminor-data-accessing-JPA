@@ -1,14 +1,22 @@
-package com.javaminor.accessingDataJPA.Models;
+package com.javaminor.accessingDataJPA.Models.DbModels;
 
 import javax.persistence.*;
 import java.util.Collection;
 
 @Entity
 public class Employee extends CredentialsCommon{
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "MANAGER_ID")
+    private Long id;
+
+    @Column(name = "JOB_TITLE", nullable = false)
     private String jobTitle;
 
     @Enumerated(EnumType.STRING)
-    private GenerEnum gender;
+    @Column(name = "GENDER")
+    private GenderEnum gender;
 
     @Embedded
     private AddressEmbeddable address;
@@ -18,18 +26,18 @@ public class Employee extends CredentialsCommon{
 
     protected Employee() {};
 
-    public Employee(String jobTitle, GenerEnum gender, AddressEmbeddable address){
+    public Employee(String jobTitle, GenderEnum gender, AddressEmbeddable address){
         this.jobTitle = jobTitle;
         this.gender = gender;
         this.address = address;
     }
-    //getters
+    //getters and setters
 
     public String getJobTitle() {
         return this.jobTitle;
     }
 
-    public GenerEnum getGener() {
+    public GenderEnum getGender() {
         return this.gender;
     }
 
@@ -43,5 +51,9 @@ public class Employee extends CredentialsCommon{
 
     public void setManagedBankAccounts(Collection<BankAccount> managedBankAccounts) {
         this.managedBankAccounts = managedBankAccounts;
+    }
+
+    public Long getId() {
+        return id;
     }
 }

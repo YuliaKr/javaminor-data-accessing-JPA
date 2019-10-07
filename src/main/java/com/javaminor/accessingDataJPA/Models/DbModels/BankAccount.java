@@ -1,4 +1,4 @@
-package com.javaminor.accessingDataJPA.Models;
+package com.javaminor.accessingDataJPA.Models.DbModels;
 
 import javax.persistence.*;
 
@@ -6,11 +6,14 @@ import javax.persistence.*;
 public class BankAccount {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="ACCOUNT_ID", nullable = false)
     private Long id;
 
+    @Column(name="BALANCE", nullable = false)
     private Double balance;
 
     @ManyToOne
+    @JoinColumn(name = "MANAGER_ID")
     private Employee accountManager;
 
     protected BankAccount() {}

@@ -1,18 +1,18 @@
 package com.javaminor.accessingDataJPA.Controllers;
 
-import com.javaminor.accessingDataJPA.Models.Client;
-import com.javaminor.accessingDataJPA.Repositories.ClientsRepository;
+import com.javaminor.accessingDataJPA.Models.DbModels.Client;
+import com.javaminor.accessingDataJPA.Repositories.ClientRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("clients")
-public class ClientsController {
+public class ClientController {
 
-    private final ClientsRepository _clientRepository;
+    private final ClientRepository _clientRepository;
 
-    public ClientsController(ClientsRepository clientRepository) {
+    public ClientController(ClientRepository clientRepository) {
         _clientRepository = clientRepository;
     }
 
